@@ -6,7 +6,7 @@
     "url": "https://github.com/madantamang/nodepasal"
   },
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "node app.js",
     "test": "mocha --reporter spec --timeout 5000"
   },
   "dependencies": {
