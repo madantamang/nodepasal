@@ -1,46 +1,30 @@
-extends ../layout
-
-block content
-  .page-header
-    h2
-      i.fa.fa-yahoo(style='color: #7b0099')
-      | Yahoo API
-  .btn-group.btn-group-justified
-    a.btn.btn-primary(href='https://developer.yahoo.com/yql/', target='_blank')
-      i.fa.fa-check-square-o
-      | YQL Getting Started
-    a.btn.btn-primary(href='http://yuilibrary.com/yui/docs/node/', target='_blank')
-      i.fa.fa-laptop
-      | YUI on Node.js
-    a.btn.btn-primary(href='https://developer.yahoo.com/everything.html', target='_blank')
-      i.fa.fa-code
-      | Yahoo APIs
-
-  br
-  p.lead Weather for ZIP Code:
-    strong  10007
-  .alert.alert-info
-    p It is currently
-     strong  #{condition.temp}
-     |  degrees in
-     strong  #{location.city}, #{location.region}
-     | .
-
-  hr
-  p.lead Yahoo Finance API
-  .row
-    for quote in quotes
-      .col-sm-3
-        dl
-          dt Symbol
-          dd= quote.Symbol
-          dt Name
-          dd= quote.Name
-          dt Last Traded Price
-          dd= quote.LastTradePriceOnly
-          dt Change
-            dd= quote.Change
-          dt Day's Range
-          dd= quote.DaysRange
-          dt Market Capitalization
-          dd= quote.MarketCapitalization
+<div class="page-header">
+  <h2><i style="color: #7b0099" class="fa fa-yahoo"></i>Yahoo API</h2>
+</div>
+<div class="btn-group btn-group-justified"><a href="https://developer.yahoo.com/yql/" target="_blank" class="btn btn-primary"><i class="fa fa-check-square-o"></i>YQL Getting Started</a><a href="http://yuilibrary.com/yui/docs/node/" target="_blank" class="btn btn-primary"><i class="fa fa-laptop"></i>YUI on Node.js</a><a href="https://developer.yahoo.com/everything.html" target="_blank" class="btn btn-primary"><i class="fa fa-code"></i>Yahoo APIs</a></div><br/>
+<p class="lead">Weather for ZIP Code:<strong> 10007</strong></p>
+<div class="alert alert-info">
+  <p>It is currently<strong> {condition.temp}</strong> degrees in<strong> {location.city}, {location.region}</strong>.</p>
+</div>
+<hr/>
+<p class="lead">Yahoo Finance API</p>
+<div class="row">
+ //for quote in quotes
+  <div class="col-sm-3">
+    <dl>
+      <dt>Symbol</dt>
+      <dd>quote.Symbol</dd>
+      <dt>Name</dt>
+      <dd>quote.Name</dd>
+      <dt>Last Traded Price</dt>
+      <dd>quote.LastTradePriceOnly</dd>
+      <dt>Change
+        <dd>quote.Change</dd>
+      </dt>
+      <dt>Day's Range</dt>
+      <dd>quote.DaysRange</dd>
+      <dt>Market Capitalization</dt>
+      <dd>quote.MarketCapitalization</dd>
+    </dl>
+  </div>
+</div>

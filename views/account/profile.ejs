@@ -1,111 +1,137 @@
-extends ../layout
-
-block content
-  .page-header
-    h3 Profile Information
-
-  form.form-horizontal(action='/account/profile', method='POST')
-    input(type='hidden', name='_csrf', value=_csrf)
-    .form-group
-      label.col-sm-3.control-label(for='email') Email
-      .col-sm-7
-        input.form-control(type='email', name='email', id='email', value='#{user.email}')
-    .form-group
-      label.col-sm-3.control-label(for='name') Name
-      .col-sm-7
-        input.form-control(type='text', name='name', id='name', value='#{user.profile.name}')
-    .form-group
-      label.col-sm-3.control-label(for='gender') Gender
-      .col-sm-6
-        label.radio.col-sm-3
-          input(type='radio', checked=user.profile.gender=='male', name='gender', value='male', data-toggle='radio')
-          span Male
-        label.radio.col-sm-3
-          input(type='radio', checked=user.profile.gender=='female', name='gender', value='female', data-toggle='radio')
-          span Female
-        label.radio.col-sm-3
-          input(type='radio', checked=user.profile.gender=='other', name='gender', value='other', data-toggle='radio')
-          span Other
-    .form-group
-      label.col-sm-3.control-label(for='location') Location
-      .col-sm-7
-        input.form-control(type='text', name='location', id='location', value='#{user.profile.location}')
-    .form-group
-      label.col-sm-3.control-label(for='website') Website
-      .col-sm-7
-        input.form-control(type='text', name='website', id='website', value='#{user.profile.website}')
-    .form-group
-      label.col-sm-3.control-label(for='gravatar') Gravatar
-      .col-sm-4
-        img(src="#{user.gravatar()}", class='profile', width='100', height='100')
-    .form-group
-      .col-sm-offset-3.col-sm-4
-        button.btn.btn.btn-primary(type='submit')
-          i.fa.fa-pencil
-          | Update Profile
-
-  .page-header
-    h3 Change Password
-
-  form.form-horizontal(action='/account/password', method='POST')
-    input(type='hidden', name='_csrf', value=_csrf)
-    .form-group
-      label.col-sm-3.control-label(for='password') New Password
-      .col-sm-7
-        input.form-control(type='password', name='password', id='password')
-    .form-group
-      label.col-sm-3.control-label(for='confirmPassword') Confirm Password
-      .col-sm-7
-        input.form-control(type='password', name='confirmPassword', id='confirmPassword')
-    .form-group
-      .col-sm-offset-3.col-sm-4
-        button.btn.btn-primary(type='submit')
-          i.fa.fa-lock
-          | Change Password
-
-  .page-header
-    h3 Delete Account
-
-  form.form-horizontal(action='/account/delete', method='POST')
-    .form-group
-      p.col-sm-offset-3.col-sm-4 You can delete your account, but keep in mind this action is irreversible.
-      input(type='hidden', name='_csrf', value=_csrf)
-      .col-sm-offset-3.col-sm-4
-        button.btn.btn-danger(type='submit')
-          i.fa.fa-trash
-          | Delete my account
-
-  .page-header
-    h3 Linked Accounts
-  .form-horizontal
-    .form-group
-      .col-sm-offset-3.col-sm-4
-        if user.instagram
-          p: a.text-danger(href='/account/unlink/instagram') Unlink your Instagram account
-        else
-          p: a(href='/auth/instagram') Link your Instagram account
-      .col-sm-offset-3.col-sm-4
-        if user.google
-          p: a.text-danger(href='/account/unlink/google') Unlink your Google account
-        else
-          p: a(href='/auth/google') Link your Google account
-      .col-sm-offset-3.col-sm-4
-        if user.facebook
-          p: a.text-danger(href='/account/unlink/facebook') Unlink your Facebook account
-        else
-          p: a(href='/auth/facebook') Link your Facebook account
-      .col-sm-offset-3.col-sm-4
-        if user.twitter
-          p: a.text-danger(href='/account/unlink/twitter') Unlink your Twitter account
-        else
-          p: a(href='/auth/twitter') Link your Twitter account
-      .col-sm-offset-3.col-sm-4
-        if user.github
-          p: a.text-danger(href='/account/unlink/github') Unlink your GitHub account
-        else
-          p: a(href='/auth/github') Link your GitHub account
-      .col-sm-offset-3.col-sm-4
-        if user.linkedin
-          p: a.text-danger(href='/account/unlink/linkedin') Unlink your LinkedIn account
-        else
-          p: a(href='/auth/linkedin') Link your LinkedIn account
+<div class="page-header">
+  <h3>Profile Information</h3>
+</div>
+<form action="/account/profile" method="POST" class="form-horizontal">
+  <input type="hidden" name="_csrf"/>
+  <div class="form-group">
+    <label for="email" class="col-sm-3 control-label">Email</label>
+    <div class="col-sm-7">
+      <input type="email" name="email" id="email" value="<%=user.email%>" class="form-control"/>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="name" class="col-sm-3 control-label">Name</label>
+    <div class="col-sm-7">
+      <input type="text" name="name" id="name" value="<%=user.profile.name%>" class="form-control"/>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="gender" class="col-sm-3 control-label">Gender</label>
+    <div class="col-sm-6">
+      <label class="radio col-sm-3">
+        <input type="radio" name="gender" checked="<%=(user.profile.gender=='male')%>" value="male" data-toggle="radio"/><span>Male</span>
+      </label>
+      <label class="radio col-sm-3">
+        <input type="radio" name="gender" checked="<%=(user.profile.gender=='female')%>"  value="female" data-toggle="radio"/><span>Female</span>
+      </label>
+      <label class="radio col-sm-3">
+        <input type="radio" name="gender" value="other" checked="<%=(user.profile.gender=='other')%>"  data-toggle="radio"/><span>Other</span>
+      </label>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="location" class="col-sm-3 control-label">Location</label>
+    <div class="col-sm-7">
+      <input type="text" name="location" id="location" value="<%=user.profile.location%>" class="form-control"/>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="website" class="col-sm-3 control-label">Website</label>
+    <div class="col-sm-7">
+      <input type="text" name="website" id="website" value="<%=user.profile.website%>" class="form-control"/>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="gravatar" class="col-sm-3 control-label">Gravatar</label>
+    <div class="col-sm-4"><img src="<%=user.gravatar()%>" width="100" height="100" class="profile"/></div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-4">
+      <button type="submit" class="btn btn btn-primary"><i class="fa fa-pencil"></i>Update Profile</button>
+    </div>
+  </div>
+</form>
+<div class="page-header">
+  <h3>Change Password</h3>
+</div>
+<form action="/account/password" method="POST" class="form-horizontal">
+  <input type="hidden" name="_csrf"/>
+  <div class="form-group">
+    <label for="password" class="col-sm-3 control-label">New Password</label>
+    <div class="col-sm-7">
+      <input type="password" name="password" id="password" class="form-control"/>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="confirmPassword" class="col-sm-3 control-label">Confirm Password</label>
+    <div class="col-sm-7">
+      <input type="password" name="confirmPassword" id="confirmPassword" class="form-control"/>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-4">
+      <button type="submit" class="btn btn-primary"><i class="fa fa-lock"></i>Change Password</button>
+    </div>
+  </div>
+</form>
+<div class="page-header">
+  <h3>Delete Account</h3>
+</div>
+<form action="/account/delete" method="POST" class="form-horizontal">
+  <div class="form-group">
+    <p class="col-sm-offset-3 col-sm-4">You can delete your account, but keep in mind this action is irreversible.</p>
+    <input type="hidden" name="_csrf"/>
+    <div class="col-sm-offset-3 col-sm-4">
+      <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i>Delete my account</button>
+    </div>
+  </div>
+</form>
+<div class="page-header">
+  <h3>Linked Accounts</h3>
+</div>
+<div class="form-horizontal">
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-4">
+      <%  if (user.instagram){%>
+      <p><a href="/account/unlink/instagram" class="text-danger">Unlink your Instagram account</a></p>
+      <%}else{%>
+      <p><a href="/auth/instagram">Link your Instagram account</a></p>
+      <%}%>
+    </div>
+    <div class="col-sm-offset-3 col-sm-4">
+      <%  if (user.google){%>
+      <p><a href="/account/unlink/google" class="text-danger">Unlink your Google account</a></p>
+      <%}else{%>
+      <p><a href="/auth/google">Link your Google account</a></p>
+        <%}%>
+    </div>
+    <div class="col-sm-offset-3 col-sm-4">
+    <%  if (user.facebook){%>
+      <p><a href="/account/unlink/facebook" class="text-danger">Unlink your Facebook account</a></p>
+     <%}else{%>
+      <p><a href="/auth/facebook">Link your Facebook account</a></p>
+     <%}%>
+    </div>
+    <div class="col-sm-offset-3 col-sm-4">
+        <%  if (user.twitter){%>
+      <p><a href="/account/unlink/twitter" class="text-danger">Unlink your Twitter account</a></p>
+     <%}else{%>
+      <p><a href="/auth/twitter">Link your Twitter account</a></p>
+       <%}%>
+    </div>
+    <div class="col-sm-offset-3 col-sm-4">
+          <%  if (user.github){%>
+      <p><a href="/account/unlink/github" class="text-danger">Unlink your GitHub account</a></p>
+     <%}else{%>
+      <p><a href="/auth/github">Link your GitHub account</a></p>
+   <%}%>
+    </div>
+    <div class="col-sm-offset-3 col-sm-4">
+        <%  if (user.linkedin){%>
+      <p><a href="/account/unlink/linkedin" class="text-danger">Unlink your LinkedIn account</a></p>
+   <%}else{%>
+      <p><a href="/auth/linkedin">Link your LinkedIn account</a></p>
+      <%}%>
+    </div>
+  </div>
+</div>

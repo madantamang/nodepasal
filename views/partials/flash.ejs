@@ -1,22 +1,30 @@
 <%if( messages.errors){%>
-  .alert.alert-danger.fade.in
-    button.close(type='button', data-dismiss='alert')
-      i.fa.fa-times-circle-o
-    for error in messages.errors
-      div= error.msg
+  <div class="alert alert-danger fade in">
+  <button type="button" data-dismiss="alert" class="close"><i class="fa fa-times-circle-o"></i></button>
+   <% messages.error.forEach(function(error){ %>
+    <div>
+    <%=error.msg%>
+    </div>
+  <% })%>
+  </div>
       <%}%>
 <%if (messages.info){%>
-  .alert.alert-info.fade.in
-    button.close(type='button', data-dismiss='alert')
-      i.fa.fa-times-circle-o
-    for info in messages.info
-      div= info.msg
+  <div class="alert alert-info fade in">
+  <button type="button" data-dismiss="alert" class="close"><i class="fa fa-times-circle-o"></i></button>
+<% messages.info.forEach(function(info){ %>
+      <div>
+      <%=info.msg%>
+      </div>
+      <% }); %>
+      </div>
       <%}%>
 
 <%if (messages.success){%>
-  .alert.alert-success.fade.in
-    button.close(type='button', data-dismiss='alert')
-      i.fa.fa-times-circle-o
-    for success in messages.success
-      div= success.msg
+  <div class="alert alert-success fade in">
+  <button type="button" data-dismiss="alert" class="close"><i class="fa fa-times-circle-o"></i></button>
+  <% messages.success.forEach(function(success){ %>
+    <%=success.msg%>
+    <% }); %>
+  </div>
+
       <%}%>

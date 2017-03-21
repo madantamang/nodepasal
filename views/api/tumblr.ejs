@@ -1,26 +1,10 @@
-extends ../layout
-
-block content
-  .page-header
-    h2
-      i.fa.fa-tumblr-square
-      | Tumblr API
-
-  .btn-group.btn-group-justified
-    a.btn.btn-primary(href='http://www.tumblr.com/docs/en/api/v2#overview', target='_blank')
-      i.fa.fa-check-square-o
-      | Overview
-    a.btn.btn-primary(href='https://api.tumblr.com/console', target='_blank')
-      i.fa.fa-laptop
-      | API Console
-    a.btn.btn-primary(href='http://www.tumblr.com/docs/en/api/v2#blog_methods', target='_blank')
-      i.fa.fa-code-fork
-      | API Endpoints
-
-  h3.text-primary #{blog.name}'s blog
-  .btn.btn-xs.btn-primary-outline
-    i.fa.fa-file-text-o
-    | #{blog.posts} posts
-  h4 Latest Photo Post
-  for photo in photoset
-    img.item(src='#{photo.original_size.url}')
+<div class="page-header">
+  <h2><i class="fa fa-tumblr-square"></i>Tumblr API</h2>
+</div>
+<div class="btn-group btn-group-justified"><a href="http://www.tumblr.com/docs/en/api/v2#overview" target="_blank" class="btn btn-primary"><i class="fa fa-check-square-o"></i>Overview</a><a href="https://api.tumblr.com/console" target="_blank" class="btn btn-primary"><i class="fa fa-laptop"></i>API Console</a><a href="http://www.tumblr.com/docs/en/api/v2#blog_methods" target="_blank" class="btn btn-primary"><i class="fa fa-code-fork"></i>API Endpoints</a></div>
+<h3 class="text-primary">{blog.name}'s blog</h3>
+<div class="btn btn-xs btn-primary-outline"><i class="fa fa-file-text-o"></i>{blog.posts} posts</div>
+<h4>Latest Photo Post</h4>
+<!--for photo in photoset
+<img src="{photo.original_size.url}" class="item"/>
+-->

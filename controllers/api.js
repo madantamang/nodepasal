@@ -120,6 +120,7 @@ exports.getFacebook = function(req, res, next) {
     },
     getMyFriends: function(done) {
       graph.get(req.user.facebook + '/friends', function(err, friends) {
+           console.log('friends',friends)
         done(err, friends.data);
       });
     }
@@ -166,7 +167,7 @@ exports.getGithub = function(req, res, next) {
 
   var token = _.find(req.user.tokens, { kind: 'github' });
   var github = new Github({ token: token.accessToken });
-  var repo = github.getRepo('sahat', 'requirejs-library');
+  var repo = github.getRepo('madantamang', 'nodepasal');
   repo.getDetails(function(err, repo) {
     if (err) {
       return next(err);

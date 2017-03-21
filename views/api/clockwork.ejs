@@ -1,26 +1,18 @@
-extends ../layout
-
-block content
-  .page-header
-    h2
-      i.fa.fa-phone
-      | Clockwork SMS API
-
-  .btn-group.btn-group-justified
-    a.btn.btn-primary(href='http://github.com/mediaburst/node-clockwork', target='_blank')
-      i.fa.fa-check-square-o
-      | Clockwork Node
-    a.btn.btn-primary(href='http://www.clockworksms.com/doc/clever-stuff/xml-interface/send-sms/', target='_blank')
-      i.fa.fa-code-fork
-      | XML API
-
-  h4 Send a text message
-  .row
-    .col-sm-6
-      form(role='form', method='POST')
-        input(type='hidden', name='_csrf', value=_csrf)
-        .form-group
-          .input-group
-            input.form-control(type='text', name='telephone', placeholder='Phone Number (international format)')
-            span.input-group-btn
-              button.btn.btn-success(type='submit') Send
+<div class="page-header">
+  <h2><i class="fa fa-phone"></i>Clockwork SMS API</h2>
+</div>
+<div class="btn-group btn-group-justified"><a href="http://github.com/mediaburst/node-clockwork" target="_blank" class="btn btn-primary"><i class="fa fa-check-square-o"></i>Clockwork Node</a><a href="http://www.clockworksms.com/doc/clever-stuff/xml-interface/send-sms/" target="_blank" class="btn btn-primary"><i class="fa fa-code-fork"></i>XML API</a></div>
+<h4>Send a text message</h4>
+<div class="row">
+  <div class="col-sm-6">
+    <form role="form" method="POST">
+      <input type="hidden" name="_csrf"/>
+      <div class="form-group">
+        <div class="input-group">
+          <input type="text" name="telephone" placeholder="Phone Number (international format)" class="form-control"/><span class="input-group-btn">
+            <button type="submit" class="btn btn-success">Send</button></span>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
