@@ -33,6 +33,7 @@ var homeController = require('./controllers/home');
 var userController = require('./controllers/user');
 var apiController = require('./controllers/api');
 var contactController = require('./controllers/contact');
+var shopController = require('./controllers/shop');
 
 /**
  * API keys and Passport configuration.
@@ -125,9 +126,15 @@ app.post('/account/profile', passportConfig.isAuthenticated, userController.post
 app.post('/account/password', passportConfig.isAuthenticated, userController.postUpdatePassword);
 app.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
 app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
-
 /**
- * API examples routes.
+ * Shop  routes.
+ */
+ app.get('/shop', shopController.index);
+app.get('/details', shopController.productdetails);
+app.get('/checkout', shopController.checkout);
+app.get('/orderhistory', shopController.orderhistory);
+/**
+ * API  routes.
  */
 app.get('/api', apiController.getApi);
 app.get('/api/lastfm', apiController.getLastfm);
