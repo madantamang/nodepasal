@@ -233,7 +233,7 @@ app.use(errorHandler());
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 io.on('connection', function(socket) {
-  socket.emit('greet', { hello: 'Hey there browser!' });
+  socket.emit('greet', { hello: 'Hello user! Welcome to node starter.' });
   socket.on('respond', function(data) {
     console.log(data);
   });
